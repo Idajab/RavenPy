@@ -103,13 +103,7 @@ class Raven:
                 "Could not find raven binary in PATH, and RAVENPY_RAVEN_BINARY_PATH env variable is not set"
             )
 
-        if not OSTRICH_EXEC_PATH:
-            raise RuntimeError(
-                "Could not find ostrich binary in PATH, and RAVENPY_OSTRICH_BINARY_PATH env variable is not set"
-            )
-
         self.raven_exec = RAVEN_EXEC_PATH
-        self.ostrich_exec = OSTRICH_EXEC_PATH
 
         # Get version from Raven binary CLI output
         out = subprocess.check_output([self.raven_exec], input="\n", text=True)
@@ -672,6 +666,13 @@ class Ostrich(Raven):
     def __init__(self, *args, **kwds):
         kwds["identifier"] = kwds.get("identifier", "ostrich-generic")
         super().__init__(*args, **kwds)
+
+        if not OSTRICH_EXEC_PATH:
+            raise RuntimeError(
+                "Could not find ostrich binary in PATH, and RAVENPY_OSTRICH_BINARY_PATH env variable is not set"
+            )
+
+        self.ostrich_exec = OSTRICH_EXEC_PATH
 
     @property
     def model_path(self):

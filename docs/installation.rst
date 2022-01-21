@@ -85,6 +85,43 @@ variables (both as absolute paths) at runtime.
   The `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ implementation also works well, but the
   GIS system libraries it depends on (specifically `GDAL` and `GEOS`) can be more difficult to configure.
 
+Light Installation
+------------------
+
+If desired, the core functions of `RavenPy` can be installed without its GIS functionalities as well.
+This implementation of RavenPy is much lighter on dependencies and can be installed easily with `pip`,
+without the need for `conda` or `virtualenv`.
+
+.. code-block:: console
+
+  $ pip install ravenpy
+  $ pip install ravenpy --verbose --install-option="--with-binaries"
+
+
+Windows Installation
+--------------------
+- Assuming you have an Anaconda3 installation, create a new environment, and add the conda-forge channel. This can be done with the Anaconda Navigator graphical user interface.
+- Open a command prompt in this new environment, again, this can be done by installing and launching the `CMD.exe Prompt` application from the Anaconda Navigator Home.
+- Using your browser, download the Windows binaries from http://raven.uwaterloo.ca/Downloads.html
+- Extract the executable `Raven.exe` from the archive, rename it to `raven.exe` and copy it into your new Anaconda environment at `Users\<name>\Anaconda3\envs\<env>\Library\bin`
+- From the command prompt, install some dependencies:
+
+.. code-block:: console
+    conda install xarray dask netCDF4 bottleneck matplotlib geopandas rasterio`
+    pip install rioxarray climpred`
+
+- Clone the ravenpy and raven-testdata repositories, then install ravenpy:
+
+.. code-block:: console
+
+    git clone git://github.com/CSHS-CWRA/RavenPy
+    git clone git@github.com:Ouranosinc/raven-testdata.git
+    cd RavenPy
+    pip install --editable ".[dev]"
+
+- Set the environment variable for the test data: `set RAVENPY_TESTDATA_PATH=C:\Users\davhua1\src\raven-testdata`
+- Run test test suite with `pytest`
+
 Development Installation (from sources)
 ---------------------------------------
 
