@@ -120,7 +120,9 @@ Windows Installation
     pip install --editable ".[dev]"
 
 - Set the environment variable for the test data: `set RAVENPY_TESTDATA_PATH=C:\Users\davhua1\src\raven-testdata`
+- Set the Windows Developer mode to On.
 - Run test test suite with `pytest`
+
 
 Development Installation (from sources)
 ---------------------------------------
