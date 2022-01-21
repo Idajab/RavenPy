@@ -107,7 +107,7 @@ class Raven:
 
         # Get version from Raven binary CLI output
         out = subprocess.check_output([self.raven_exec], input="\n", text=True)
-        match = re.search(r"Version (\S+) ", out)
+        match = re.search(r"Version (\S+)", out)
         if match:
             self.raven_version = match.groups()[0]
         else:
