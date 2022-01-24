@@ -100,10 +100,12 @@ without the need for `conda` or `virtualenv`.
 
 Windows Installation
 --------------------
+Note that RavenPy support on Windows is a work in progress. There are yet many things that don't fully work. To get a partially working installation:
+
 - Assuming you have an Anaconda3 installation, create a new environment, and add the conda-forge channel. This can be done with the Anaconda Navigator graphical user interface.
 - Open a command prompt in this new environment, again, this can be done by installing and launching the `CMD.exe Prompt` application from the Anaconda Navigator Home.
-- Using your browser, download the Windows binaries from http://raven.uwaterloo.ca/Downloads.html
-- Extract the executable `Raven.exe` from the archive, rename it to `raven.exe` and copy it into your new Anaconda environment at `Users\<name>\Anaconda3\envs\<env>\Library\bin`
+- Using your browser, download the Windows binaries from http://raven.uwaterloo.ca/Downloads.html Make sure you select the binaries compiled with netCDF support.
+- Extract the executable `Raven.exe` from the archive, rename it to `raven.exe` and copy it into your new Anaconda environment at `Users\<user>\Anaconda3\envs\<env>\Library\bin`
 - From the command prompt, install some dependencies:
 
 .. code-block:: console
@@ -114,15 +116,20 @@ Windows Installation
 
 .. code-block:: console
 
+    cd C:\Users\<user>
+    mkdir src
+    cd src
     git clone git://github.com/CSHS-CWRA/RavenPy
     git clone git@github.com:Ouranosinc/raven-testdata.git
     cd RavenPy
-    pip install --editable ".[dev]"
+    python setup.py develop
 
-- Set the environment variable for the test data: `set RAVENPY_TESTDATA_PATH=C:\Users\davhua1\src\raven-testdata`
+- Set the environment variable for the test data: `set RAVENPY_TESTDATA_PATH=C:\Users\<user>\src\raven-testdata`
 - Set the Windows Developer mode to On.
 - Run test test suite with `pytest`
 
+Troubleshooting
+- If you get errors with `:NULL time series added`, it probably means you're using Raven binaries that were not compiled with netCDF.
 
 Development Installation (from sources)
 ---------------------------------------
